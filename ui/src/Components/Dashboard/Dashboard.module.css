@@ -1,0 +1,27 @@
+.project_card {
+  padding: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  background: #dbdfe5;
+
+  cursor: pointer;
+}
+
+.img_fluid {
+  max-width: 50%;
+  height: auto;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.vr {
+  height: 100%;
+}
+
+.tool_icon {
+  max-width: 25%;
+  height: auto;
+}
