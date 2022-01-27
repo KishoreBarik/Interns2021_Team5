@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 
 function Login() {
   const initialValues = { email: "", password: "" };
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,7 +24,6 @@ function Login() {
   };
 
   useEffect(() => {
-    console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       navigate("/changepassword");
     }
@@ -43,6 +44,10 @@ function Login() {
     }
     return errors;
   };
+
+  const togglePassword = () => {
+    setIsShow(isShow ? false : true);
+  };
   return (
     <section className="container-fluid">
       <div className="row content d-flex justify-content-center align-items-center">
@@ -50,33 +55,44 @@ function Login() {
           <div className="card shadow-sm bg-white p-4">
             <h3 className="nm-4 text-center fs-1 m-4">Login</h3>
             <form className="mb-3" onSubmit={handleSubmit}>
-              <div className="form-floating mb-3 outline-none">
+              <div className="form-group mb-3">
+                {/* <label htmlFor="email">Email</label> */}
                 <input
                   type="email"
                   name="email"
-                  className="form-control"
+                  className="form-control mt-1 py-3"
                   placeholder="Enter your email address"
                   value={formValues.email}
                   id="email"
                   onChange={handleChanges}
                 />
-                <label htmlFor="email">Enter your email address</label>
               </div>
               <p className="text-danger">{formErrors.email}</p>
-              <div className="form-floating mb-3">
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  placeholder="Enter your password"
-                  value={formValues.password}
-                  id="password"
-                  onChange={handleChanges}
-                />
-                <label htmlFor="password">Enter your password</label>
+              <div className="form-group mb-3">
+                {/* <label htmlFor="password">Password</label> */}
+                <div className="input-group">
+                  <input
+                    type={isShow ? "text" : "password"}
+                    name="password"
+                    className="form-control"
+                    placeholder="Enter your password"
+                    value={formValues.password}
+                    id="password"
+                    onChange={handleChanges}
+                    data-toggle="password"
+                  />
+                  <div
+                    className="input-group-append"
+                    onClick={() => togglePassword()}
+                  >
+                    <div className="input-group-text p-3">
+                      {isShow ? <RiEyeLine /> : <RiEyeOffLine />}
+                    </div>
+                  </div>
+                </div>
               </div>
               <p className="text-danger">{formErrors.password}</p>
-              <div className="d-grid gap-2 mt-4">
+              <div className="d-grid gap-2">
                 <button className="btn btn-primary btn-lg border-0">
                   Login
                 </button>

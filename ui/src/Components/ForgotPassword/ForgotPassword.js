@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "../Login/Login.css";
 
 function ForgotPassword() {
@@ -7,10 +7,10 @@ function ForgotPassword() {
   const [emailError, setemailError] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChanges = (e) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     setEmail(value);
   };
 
@@ -45,17 +45,17 @@ function ForgotPassword() {
           <div className="card shadow-sm bg-white p-4">
             <h3 className="nm-4 text-center fs-1 m-4">Forgot Password</h3>
             <form className="mb-3" onSubmit={handleSubmit}>
-              <div className="form-floating mb-3">
+              <div className="form-group mb-3">
+                {/* <label htmlFor="email">Email</label> */}
                 <input
                   type="email"
                   name="email"
-                  className="form-control"
+                  className="form-control py-3"
                   placeholder="Enter your email address"
                   value={emailValue}
                   id="email"
                   onChange={handleChanges}
                 />
-                <label htmlFor="email">Enter your email address</label>
               </div>
               <p className="text-danger">{emailError}</p>
               <div className="d-grid gap-2 mt-4">

@@ -13,3 +13,7 @@
   box-shadow: none !important;
   border: 1px solid #0b5ed7 !important;
 }
+
+.cf {
+  flex: 0.5;
+}
