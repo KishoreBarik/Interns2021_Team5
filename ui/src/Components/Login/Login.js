@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import AuthContext from "../../Context/AuthContext";
 
 function Login() {
   const initialValues = { email: "", password: "" };
@@ -9,6 +10,8 @@ function Login() {
   const [formErrors, setformErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [isShow, setIsShow] = useState(false);
+
+  const authCtx = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -21,11 +24,12 @@ function Login() {
     e.preventDefault();
     setformErrors(handleValidation(formValues));
     setIsSubmit(true);
+    authCtx.onLogin(formValues.email, formValues.password);
   };
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      navigate("/changepassword");
+      // navigate("/changepassword");
     }
   }, [formErrors]);
 

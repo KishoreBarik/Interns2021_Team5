@@ -1,19 +1,23 @@
-import React from "react";
+import React,{useContext,useEffect,useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import { Route, Routes } from "react-router-dom";
+import { Navigate,Route, Routes } from "react-router-dom";
 import Dashboard from "./Components/Dashboard/Dashboard.js";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 import Login from "./Components/Login/Login";
 import ChangePassword from "./Components/ChangePassword/ChangePassword";
+import AuthContext from "./Context/AuthContext.js";
 
 const App = () => {
+  const ctx=useContext(AuthContext)
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={ctx.isLoggedIn ? <Navigate to ="/dashboard"/>: <Login/>} />
+      <Route path='/login' element={<Login/>}/>
+      <Route path="/dashboard" element={!ctx.isLoggedIn ? <Navigate to="/"/>:<Dashboard/>} />
       <Route path="/changepassword" element={<ChangePassword />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      
     </Routes>
   );
 };

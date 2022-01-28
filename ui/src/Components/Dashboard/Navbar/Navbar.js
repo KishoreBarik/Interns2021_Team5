@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../../Context/AuthContext";
 
 function Navbar() {
+  const authCtx = useContext(AuthContext);
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
       <div className="container-fluid">
@@ -25,9 +27,9 @@ function Navbar() {
                   Change password
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link to={"/"} className="dropdown-item">
+                <div onClick={authCtx.onLogout} className="dropdown-item">
                   Logout
-                </Link>
+                </div>
               </div>
             </li>
           </ul>
