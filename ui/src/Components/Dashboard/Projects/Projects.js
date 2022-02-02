@@ -24,7 +24,7 @@ function Projects() {
 
   const openProject = (id) => {
     projectIndex = projects.findIndex((p) => p.id === id);
-    // console.log(projects[projectIndex]);
+    console.log(projects[projectIndex]);
     setselectedProject(projects[projectIndex]);
   };
 
@@ -48,7 +48,7 @@ function Projects() {
                     onClick={() => openProject(project.id)}
                   >
                     <img
-                      src={projectIcon}
+                      src={project.image}
                       alt="Project"
                       className={styles.img_fluid}
                     />
