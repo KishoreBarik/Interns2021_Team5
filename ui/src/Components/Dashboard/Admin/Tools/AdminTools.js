@@ -1,7 +1,8 @@
 import React from "react";
 
+
 function AdminTools() {
-  return <div>AdminTools</div>;
+  return <div>Tools</div>;
 }
 
 export default AdminTools;

@@ -42,7 +42,7 @@ function AdminUsers() {
       </div>
       <Collapse in={isAdd}>
         <div id="addUser" className="bg-light my-2">
-          <AddUser/>
+          <AddUser title="Add User Form"/>
         </div>
       </Collapse>
 
@@ -95,7 +95,8 @@ function AdminUsers() {
                 className="my-3"
               >
                 <div id={user.id} className="bg-light">
-                  <AddUser />
+
+                      <AddUser selectedUser={selectedUser} title="Edit User Form"/>
                 </div>
               </Collapse>
             </div>

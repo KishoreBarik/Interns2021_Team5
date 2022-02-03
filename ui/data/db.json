@@ -514,31 +514,73 @@
   "users":[
     {
       "id":1,
+      "firstname":"Pavani",
+      "lastname":"Javapu",
       "username":"PavaniJavapu",
+      "password":"pavani",
+      "gender":"Female",
+      "date":"1999-12-28",
+      "email":"pavanijavapu@gmail.com",
       "image":"https://i.stack.imgur.com/34AD2.jpg"
 
     },
     {
       "id":2,
+      "firstname":"Saraswathi",
+      "lastname":"Reddy",
       "username":"SaraswathiReddy",
+      "password":"saraswathi",
+      "gender":"Female",
+      "date":"2000-12-28",
+      "email":"saraswathireddy@gmail.com",
       "image":"https://i.stack.imgur.com/34AD2.jpg"
-
+      
     },
     {
       "id":3,
-      "username":"ShineDasari",
+      "firstname":"Shine",
+      "lastname":"Dasari",
+      "username":"ShineDasri",
+      "password":"shine",
+      "gender":"Female",
+      "date":"1999-12-24",
+      "email":"dasarishine@gmail.com",
       "image":"https://i.stack.imgur.com/34AD2.jpg"
 
     },
     {
       "id":4,
-      "username":"SunithaReddy",
+      "firstname":"Yamini",
+      "lastname":"Javapu",
+      "username":"YaminiJavapu",
+      "password":"yamini",
+      "gender":"Female",
+      "date":"1999-11-28",
+      "email":"yaminijavapu@gmail.com",
       "image":"https://i.stack.imgur.com/34AD2.jpg"
 
     },
     {
       "id":5,
+      "firstname":"Harika ",
+      "lastname":"Javapu",
       "username":"HarikaJavapu",
+      "password":"harika",
+      "gender":"Female",
+      "date":"1999-12-28",
+      "email":"harikajavapu@gmail.com",
+      "image":"https://i.stack.imgur.com/34AD2.jpg"
+
+    },
+    {
+      "id":6,
+      "firstname":"Syam ",
+      "lastname":"Javapu",
+      "username":"SyamJavapu",
+      "password":"syamm",
+      "gender":"Male",
+      "date":"2005-12-28",
+      "email":"syamjavapu@gmail.com",
       "image":"https://i.stack.imgur.com/34AD2.jpg"
 
     }

@@ -3,8 +3,8 @@ import './AddUser.module.css';
 
 
 
-function AddUser() {
-    const initialValues={firstname:'',lastname:'',username:'',email:'',password:'',date:''};
+function AddUser(props) {
+    const initialValues={id:'',firstname:'',lastname:'',username:'',email:'',password:'',date:'',gender:''};
     const [formValues,setFormValues]=useState(initialValues);
     const [formErrors,setFormErrors]=useState({});
     const [isSubmit,setIsSubmit]=useState(false);
@@ -27,7 +27,9 @@ function AddUser() {
         console.log(formErrors);
         if(Object.keys(formErrors).length===0 && isSubmit){
             console.log(formValues);
+            
         }
+        setFormValues({...formValues,...props.selectedUser})
         
     },[formErrors,formValues,isSubmit])
     const validate=(values)=>{
@@ -66,7 +68,7 @@ function AddUser() {
     <div className="row content d-flex justify-content-center align-items-center">
       <div className="col-md-6">
         <form className="mb-3" onSubmit={handleSubmit}>
-          <h6 className="nm-4 text-center fs-1 m-4">Add User Form</h6>
+          <h6 className="nm-4 text-center fs-1 m-4">{props.title}</h6>
           <div className="card shadow-sm bg-white p-4">
           <div className="row">
              <div className="col">
@@ -121,7 +123,7 @@ function AddUser() {
               <div className='row'>
                  <div className='col'>
                  <div className='form-group'>
-              <label>Date</label>
+              <label>Date of Birth</label>
                   <input  type='date' 
                   className='form-control'
                   name='date' 
@@ -134,10 +136,10 @@ function AddUser() {
                  </div>
                  <div className='col'>   
                    <label>Gender</label>    
-                     <select className="form-select" aria-label="Default select example">
-                       <option >Male</option>
-                       <option value="1">Female</option>
-                       <option value="2">Other</option>
+                     <select className="form-select" aria-label="Default select example" value={formValues.gender}>
+                       <option value='Male'>Male</option>
+                       <option value='Female'>Female</option>
+                       <option value="other">Other</option>
  
                      </select>
                </div>
