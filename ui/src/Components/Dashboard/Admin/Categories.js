@@ -1,7 +1,6 @@
 import React from "react";
 import "./Categories.css";
 import AdminProjects from "./Projects/AdminProjects";
-import AdminTools from "./Tools/AdminTools";
 import AdminUsers from "./Users/AdminUsers";
 
 function Categories() {
@@ -33,18 +32,6 @@ function Categories() {
           >
             Projects
           </button>
-          <button
-            className="nav-link"
-            id="nav-tools-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#nav-tools"
-            type="button"
-            role="tab"
-            aria-controls="nav-tools"
-            aria-selected="false"
-          >
-            Tools
-          </button>
         </div>
       </nav>
       <div className="tab-content" id="nav-tabContent">
@@ -63,14 +50,6 @@ function Categories() {
           aria-labelledby="nav-projects-tab"
         >
           <AdminProjects />
-        </div>
-        <div
-          className="tab-pane fade"
-          id="nav-tools"
-          role="tabpanel"
-          aria-labelledby="nav-tools-tab"
-        >
-          <AdminTools />
         </div>
       </div>
     </div>

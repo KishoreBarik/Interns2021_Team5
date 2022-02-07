@@ -11,16 +11,14 @@ function AdminUsers() {
   const [selectedUser, setSelectedUser] = useState({});
 
   let userIndex;
-  const fetchUsers= async () => {
+  const fetchUsers = async () => {
     const response = await fetch("http://localhost:5000/users");
     const users = await response.json();
     setUsers(users);
-    console.log(users);
   };
 
   const editSelected = (id) => {
     userIndex = users.findIndex((p) => p.id === id);
-    console.log(users[userIndex]);
     setSelectedUser(users[userIndex]);
     id === selectedUser.id && !open ? setOpen(true) : setOpen(false);
   };
@@ -42,7 +40,7 @@ function AdminUsers() {
       </div>
       <Collapse in={isAdd}>
         <div id="addUser" className="bg-light my-2">
-          <AddUser title="Add User Form"/>
+          <AddUser title="Add User Form" />
         </div>
       </Collapse>
 
@@ -77,9 +75,7 @@ function AdminUsers() {
                         : false
                     }
                   >
-                    {user.id === selectedUser.id && !open
-                      ? "Cancel"
-                      : "Edit"}
+                    {user.id === selectedUser.id && !open ? "Cancel" : "Edit"}
                   </button>
                   <button type="button" className="btn btn-outline-danger">
                     Delete
@@ -88,15 +84,12 @@ function AdminUsers() {
               </div>
               <Collapse
                 in={
-                  user.id === selectedUser.id && open === false
-                    ? true
-                    : false
+                  user.id === selectedUser.id && open === false ? true : false
                 }
                 className="my-3"
               >
                 <div id={user.id} className="bg-light">
-
-                      <AddUser selectedUser={selectedUser} title="Edit User Form"/>
+                  <AddUser selectedUser={selectedUser} title="Edit User Form" />
                 </div>
               </Collapse>
             </div>
