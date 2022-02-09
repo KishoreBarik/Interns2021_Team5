@@ -20,13 +20,13 @@ function AddTool(props) {
             <textarea
               className="form-control"
               placeholder="Enter tool description"
-              value={props.toolValues.desc || ""}
-              name="desc"
+              value={props.toolValues.description || ""}
+              name="description"
               rows="3"
               onChange={(e) => props.handleChanges(e)}
             ></textarea>
           </div>
-          <p className="text-danger">{props.toolErrors.desc}</p>
+          <p className="text-danger">{props.toolErrors.description}</p>
           <div className="form-group mb-1">
             <input
               type="text"
