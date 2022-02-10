@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
-import "./AddUser.module.css";
+import React, { useEffect, useState } from "react";
+import Navbar from "../../../Navbar/Navbar.js";
+import { useNavigate, useLocation } from "react-router-dom";
+import { RiCloseLine } from "react-icons/ri";
+import SuccessToast from "../../../../../Common/SuccessToast.js";
 
 function AddUser(props) {
   const initialValues = {
@@ -12,28 +15,58 @@ function AddUser(props) {
     date: "",
     gender: "",
   };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [formValues, setformValues] = useState(initialValues);
+  const [formErrors, setformErrors] = useState({});
+  const [users, setUsers] = useState([]);
 
-  const handleChange = (event) => {
-    console.log(event.target);
-    const { name, value } = event.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname.split("/")[3];
+
+
+  const fetchUsers = async (id) => {
+    const userId = parseInt(id);
+    console.log(userId);
+    const response = await fetch(`http://localhost:5000/users/${userId}`);
+    const user = await response.json();
+    setformValues(user);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
+
+  const handleChanges = (e) => {
+    const { name, value } = e.target;
+    setformValues({ ...formValues, [name]: value });
   };
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-    // setFormValues({...formValues,...props.selectedUser})
-  }, []);
-  const validate = (values) => {
+
+
+  const postUser=async()=>{
+    console.warn(formValues);
+    const userId=JSON.parse(localStorage.getItem('users'));
+    let result=await fetch("http://localhost:5000/users",{
+      method:"POST",
+      body:JSON.stringify({...formValues,userId}),
+      headers:{
+        "Content-Type":"application/json"
+      }
+   });
+   result=await result.json();
+   console.warn(result);
+   fetchUsers();
+   setformErrors(handleValidation(formValues));
+   if (!Object.values(formValues).includes("")) {
+       setformValues({ ...formValues });
+       setformValues(initialValues);
+       console.log(formValues);
+       navigate("/dashboard");
+       SuccessToast(
+         currentPath === "addUser"
+           ? "User Added Successfully"
+           : "Updated Successfully"
+       );
+     }
+
+  }
+
+  const handleValidation = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.firstname) {
@@ -61,120 +94,144 @@ function AddUser(props) {
     return errors;
   };
 
+  useEffect(() => {
+    fetchUsers();
+    if (currentPath !== "addUser") {
+
+      fetchUsers(currentPath);
+    }
+    console.log(currentPath);
+  }, [currentPath]);
+
   return (
-    <section className="container-fluid">
-      <div className="row content d-flex justify-content-center align-items-center">
-        <div className="col-md-6">
-          <form className="mb-3" onSubmit={handleSubmit}>
-            <h6 className="nm-4 text-center fs-1 m-4">{props.title}</h6>
-            <div className="card shadow-sm bg-white p-4">
-              <div className="row">
-                <div className="col">
-                  <label>First Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstname"
-                    placeholder="Firstname"
-                    value={formValues.firstname}
-                    onChange={handleChange}
-                  />
-                  <p>{formErrors.firstname}</p>
-                </div>
-
-                <div className="col">
-                  <label>Last Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastname"
-                    placeholder="Last Name"
-                    value={formValues.lastname}
-                    onChange={handleChange}
-                  />
-                  <p>{formErrors.lastname}</p>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col">
-                  <label>User Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    placeholder="Username"
-                    value={formValues.username}
-                    onChange={handleChange}
-                  />
-                  <p>{formErrors.username}</p>
-                </div>
-
-                <div className="col">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    placeholder="Password"
-                    value={formValues.password}
-                    onChange={handleChange}
-                  />
-                  <p>{formErrors.password}</p>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col">
-                  <div className="form-group">
-                    <label>Date of Birth</label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      name="date"
-                      placeholder="Date"
-                      value={formValues.date}
-                      onChange={handleChange}
-                    />
-                    <p>{formErrors.email}</p>
-                  </div>
-                </div>
-                <div className="col">
-                  <label>Gender</label>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    // value={formValues.gender}
-                  >
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  placeholder="Email"
-                  value={formValues.email}
-                  onChange={handleChange}
+    <div>
+      <Navbar />
+      <div className="container-fluid">
+        <div className="row d-flex justify-content-center align-items-center">
+          <div className="col-md-8  my-4">
+            <div>
+              <div className="d-flex justify-content-between">
+                <h4 className="mb-4">
+                  {currentPath === "AddUser"
+                    ? "Add user"
+                    : "Edit user"}
+                </h4>
+                <RiCloseLine
+                  size="30px"
+                  cursor="pointer"
+                  onClick={() => navigate("/dashboard")}
                 />
-                <p>{formErrors.email}</p>
               </div>
+              <form>
+              <div className="card shadow-sm bg-white p-4">
+                  <div className="row">
+                       <div className="col">
+                           <label>First Name</label>
+                               <input type='text'
+                                 className='form-control'
+                                 name='firstname' 
+                                 placeholder='Firstname' 
+                                 value={formValues.firstname} 
+                                 onChange={handleChanges}/>
+                                <p className="text-danger">{formErrors.firstname}</p>
+                       </div>
+        
+                       <div className="col">
+                           <label>Last Name</label>
+                               <input  type='text' 
+                                 className='form-control'
+                                 name='lastname' 
+                                 placeholder='Last Name' 
+                                 value={formValues.lastname} 
+                                 onChange={handleChanges}/>
+                                <p className="text-danger">{formErrors.firstname}</p>
+                   
+                        </div>
+                   </div>  
+                   <div className="row">
+                       <div className="col">
+                           <label>User Name</label>
+                               <input type='text'
+                                 className='form-control'
+                                 name='username' 
+                                 placeholder='Username' 
+                                 value={formValues.username} 
+                                 onChange={handleChanges}/>
+                                <p className="text-danger">{formErrors.username}</p>
+                       </div>
+        
+                       <div className="col">
+                         <label>Password</label>
+                           <input type="password"
+                              className="form-control"
+                              name="password"
+                              placeholder="Password"
+                              value={formValues.password}
+                              onChange={handleChanges}/>
+                              <p className="text-danger">{formErrors.password}</p>
 
-              <div className="text-center">
-                <button type="submit" className="btn-sm btn-primary">
-                  Add User
-                </button>
-              </div>
+                       </div>
+                    </div> 
+                    <div className="row">
+                       <div className="col">
+                           <label>Date of Birth</label>
+                              <input
+                                type="date"
+                                className="form-control"
+                                name="date"
+                                placeholder="Date"
+                                value={formValues.date}
+                                onChange={handleChanges}
+                                />
+                              <p className="text-danger">{formErrors.dob}</p>
+                            
+                        </div>
+        
+                       <div className="col">
+                         <label>Gender</label>
+                         <select
+                              className="form-select"
+                              aria-label="Default select example"
+                              value={formValues.gender}
+                              onChange={handleChanges}
+
+                         >
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="other">Other</option>
+                         </select>
+                       </div>
+                    </div>   
+                  <div className="form-group mb-1">
+                      <label>Email</label>
+                      <input
+                         type="email"
+                         className="form-control"
+                         name="email"
+                         placeholder="Email"
+                         value={formValues.email}
+                         onChange={handleChanges}
+                     />
+                </div> 
+                <p className="text-danger">{formErrors.email}</p>
+                     
+                   
+                <div className="d-flex justify-content-end">
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={postUser}
+                  >
+                    Save
+                  </button>
+                </div>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-    </section>
+    </div>
+  </div>
   );
 }
 
