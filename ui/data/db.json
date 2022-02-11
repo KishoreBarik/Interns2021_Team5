@@ -576,36 +576,25 @@
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
-      "id": 3,
-      "firstname": "Shine",
-      "lastname": "Dasari",
-      "username": "ShineDasri",
-      "password": "shine",
+      "id": 2,
+      "firstname": "Saraswathi",
+      "lastname": "Reddy",
+      "username": "SaraswathiReddy",
+      "password": "saraswathi",
       "gender": "Female",
-      "date": "1999-12-24",
-      "email": "dasarishine@gmail.com",
+      "date": "2000-12-28",
+      "email": "saraswathireddy@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
-      "id": 5,
-      "firstname": "Harika ",
+      "id": 4,
+      "firstname": "Yamini",
       "lastname": "Javapu",
-      "username": "HarikaJavapu",
-      "password": "harika",
+      "username": "YaminiJavapu",
+      "password": "yamini",
       "gender": "Female",
-      "date": "1999-12-28",
-      "email": "harikajavapu@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
-      "id": 6,
-      "firstname": "Syam ",
-      "lastname": "Javapu",
-      "username": "SyamJavapu",
-      "password": "syamm",
-      "gender": "Male",
-      "date": "2005-12-28",
-      "email": "syamjavapu@gmail.com",
+      "date": "1999-11-28",
+      "email": "yaminijavapu@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
@@ -651,17 +640,18 @@
       "date": "1999-12-28",
       "email": "haswanthpopuri@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
+    }
+  ],
+  "admin": [
     {
-      "firstname": "anjali",
-      "lastname": "chandaka",
-      "username": "anjali",
-      "password": "anjali",
-      "date": "2010-07-10",
-      "": "Female",
-      "email": "anjali@gmail.com",
-      "userId": null,
-      "id": 11
+      "id": 1,
+      "firstname": "Kishore Kumar",
+      "lastname": "Barik",
+      "username": "KishoreKumarBarik",
+      "password": "Kishore",
+      "date": "12-12-1990",
+      "gender": "Male",
+      "image": "https://i.stack.imgur.com/34AD2.jpg"
     }
   ]
 }

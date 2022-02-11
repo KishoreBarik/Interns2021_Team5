@@ -27,6 +27,11 @@ function Navbar() {
                   Change password
                 </Link>
                 <div className="dropdown-divider"></div>
+                
+                <Link to={"/dashboard/admin/id"} className="dropdown-item">
+                     Profile
+                </Link>
+                <div className="dropdown-divider"></div>
                 <div onClick={authCtx.onLogout} className="dropdown-item">
                   Logout
                 </div>
