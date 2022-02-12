@@ -8,6 +8,7 @@ import Navbar from "../../../Navbar/Navbar.js";
 import { useNavigate, useLocation } from "react-router-dom";
 import { RiCloseLine } from "react-icons/ri";
 import SuccessToast from "../../../../../Common/SuccessToast.js";
+import errorImage from "../../../../../Assets/no-image.png";
 
 function AddProject(props) {
   const initialValues = {
@@ -26,10 +27,47 @@ function AddProject(props) {
   const [users, setUsers] = useState([]);
   const [selectedUsers, setselectedUsers] = useState([]);
   const [projectUsersJson, setprojectUsersJson] = useState([]);
+  // const [maxProjectId, setMaxProjectId] = useState(0);
 
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname.split("/")[3];
+
+  const fetchProjects = async () => {
+    const response = await fetch("http://localhost:5000/projects");
+    const projects = await response.json();
+
+    // setMaxProjectId(maxId);
+    // console.log(maxId, maxProjectId);
+  };
+
+  const fetchProject = async (id) => {
+    // console.log(`http://localhost:5000/projects/${projectId}`);
+    const response = await fetch(
+      `http://localhost:5000/projects/${parseInt(id)}`
+    );
+    const project = await response.json();
+    // console.log(project);
+    // console.log(formValues);
+    console.log(project.users);
+    let projectusers = [];
+    project.users?.map((user) =>
+      projectusers.push({ value: user.id, label: user.username })
+    );
+    setselectedUsers(projectusers);
+    setformValues(project);
+    // console.log(project, formValues);
+  };
+
+  const handleChanges = (e) => {
+    const { name, value } = e.target;
+    setformValues({ ...formValues, [name]: value });
+  };
+
+  const handleToolChanges = (e) => {
+    const { name, value } = e.target;
+    setselectedTool({ ...selectedTool, [name]: value });
+  };
 
   let usersList = [];
 
@@ -43,27 +81,6 @@ function AddProject(props) {
     );
     setUsers(usersList);
     // console.log(users);
-  };
-
-  const fetchProjects = async (id) => {
-    const projectId = parseInt(id);
-    // console.log(`http://localhost:5000/projects/${projectId}`);
-    const response = await fetch(`http://localhost:5000/projects/${projectId}`);
-    const project = await response.json();
-    // console.log(project);
-    // console.log(formValues);
-    setformValues(project);
-    // console.log(project, formValues);
-  };
-
-  const handleChanges = (e) => {
-    const { name, value } = e.target;
-    setformValues({ ...formValues, [name]: value });
-  };
-
-  const handleToolChanges = (e) => {
-    const { name, value } = e.target;
-    setselectedTool({ ...selectedTool, [name]: value });
   };
 
   const finalUsers = () => {
@@ -82,6 +99,15 @@ function AddProject(props) {
     return usersss;
   };
 
+  const handleUsers = (selectedOption) => {
+    // setprojectUsers()
+    // selectedOption = [];
+    console.log(formValues["users"]);
+    console.log(selectedOption);
+    setselectedUsers(selectedOption);
+    console.log(selectedUsers);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("project users", selectedUsers);
@@ -91,10 +117,31 @@ function AddProject(props) {
       // console.log(projectUsersJson);
       // console.log(selectedUsers);
       formValues["users"] = finalUsers();
+      formValues.id = formValues.id === undefined ? Date.now() : formValues.id;
       setformValues({ ...formValues });
       // console.log(formValues);
       setformValues(initialValues);
       console.log(formValues);
+      console.log(
+        formValues.id === undefined ? "error" : Date.now() + formValues.id
+      );
+      if (currentPath === "addProject") {
+        fetch("http://localhost:5000/projects", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        });
+      } else {
+        fetch(`http://localhost:5000/projects/${currentPath}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        });
+      }
       navigate("/dashboard");
       SuccessToast(
         currentPath === "addProject"
@@ -180,13 +227,6 @@ function AddProject(props) {
     return errors;
   };
 
-  const handleUsers = (selectedOption) => {
-    // setprojectUsers()
-    // console.log(selectedOption);
-    setselectedUsers(selectedOption);
-    // console.log(selectedUsers);
-  };
-
   const selectTool = (id) => {
     settoolSelected(true);
     let toolIndex = formValues["tools"].findIndex((p) => p.id === id);
@@ -207,10 +247,11 @@ function AddProject(props) {
   };
 
   useEffect(() => {
+    fetchProjects();
     fetchUsers();
     if (currentPath !== "addProject") {
       // console.log("addproject screen");
-      fetchProjects(currentPath);
+      fetchProject(currentPath);
     }
   }, [currentPath]);
 
@@ -285,6 +326,7 @@ function AddProject(props) {
                   placeholder={"Add Users"}
                   isMulti
                   onChange={handleUsers}
+                  value={selectedUsers}
                 />
                 {formValues["tools"].length === 0 ? (
                   <div></div>
@@ -302,6 +344,10 @@ function AddProject(props) {
                                 <Image
                                   src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${tool.url}&size=16`}
                                   className="img"
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = errorImage;
+                                  }}
                                   roundedCircle
                                   width={20}
                                   height={20}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from ".././Dashboard.module.css";
-import projectIcon from "../../../../src/Assets/project_icon.png";
 import { RiCloseLine } from "react-icons/ri";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
