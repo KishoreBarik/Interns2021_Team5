@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectAccess extends Migration
+class CreateToolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateProjectAccess extends Migration
      */
     public function up()
     {
-        Schema::create('project_access', function (Blueprint $table) {
+        Schema::create('tools', function (Blueprint $table) {
             $table->id();
-            $table->integer('access_id');
+            $table->integer('tool_id');
+            $table->string('tool_name');
+            $table->text('description');
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('url')->nullable();
             $table->string('status');
             $table->timestamps();
         });
@@ -30,6 +32,6 @@ class CreateProjectAccess extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_access');
+        Schema::dropIfExists('tools');
     }
 }

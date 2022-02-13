@@ -41,7 +41,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
          Route::resource('/project',ProjectsController::class);
          Route::resource('/user',UsersController::class);
          Route::resource('/tool',ToolsController::class);
-          Route::resource('/projectaccess',ProjectAccessController::class);
+          Route::resource('/projectaccess',ProjectaccessController::class);
        
     });
 

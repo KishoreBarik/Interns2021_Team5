@@ -27,6 +27,6 @@ class Project extends Model
     }
 
     public function projectaccess(){
-        return $this->hasMany(ProjectAccess::class);
+        return $this->hasMany(Projectaccess::class);
     }
 }

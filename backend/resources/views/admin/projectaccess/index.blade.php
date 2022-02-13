@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Project Access Dashboard') }}
+            {{ __('ProjectAccess Dashboard') }}
         </h2>
     </x-slot>
 
@@ -10,16 +10,17 @@
     <div class="container mt-2">
       <div class="row">
 
-        @foreach($projectaccess as $projectaccess)
+       @foreach($projectaccess as $proacc)
+
         <div class="col-md-12 mt-2">
           <div class="card">
-            <h5 class="card-header">{{$projectaccess->access_id}}</h5>
+            <h5 class="card-header">Access Id: {{ $proacc->access_id }}</h5>
             <div class="card-body">
-              <h5 class="card-title">{{$projectaccess->project_id}}</h5>
-              <p class="card-text">
+              <h5 class="card-title">Project Id: {{ $proacc->project_id }} </h5>
+              <p class="card-text">User Id:  {{ $proacc->user_id }}</p>
 
 
-                <form action="/admin/projectaccess/{{$projectaccess->access_id}}" method="POST">
+                <form action="/admin/projectaccess/{{$proacc->access_id}}" method="POST">
                   @csrf
                   @method('delete')
 
@@ -33,15 +34,15 @@
                 </form>
                 
 
-              <a href="/admin/projectaccess/{{$projectaccess->access_id}}/edit" class="btn btn-success " style="float: right;"><i class="fa fa-edit"></i></a> 
+                <a href="/admin/projectaccess/{{$proacc->access_id}}/edit" class="btn btn-success " style="float: right;"><i class="fa fa-edit"></i></a>
 
               </p>
               
             </div>
           </div>
         </div>
-
         @endforeach
+        
       </div>
     </div>
 

@@ -37,6 +37,8 @@ class AdminSeeder extends Seeder
 
         ];
 
+        
+
         Admin::create($admin);
         User::create($user);
     }
