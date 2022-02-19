@@ -3,6 +3,8 @@ import styles from ".././Dashboard.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import errorImage from "../../../Assets/no-image.png";
+import ProjectDetail from "./ProjectDetail";
 
 function Projects() {
   const [selectedProject, setselectedProject] = useState({});
@@ -34,24 +36,37 @@ function Projects() {
   return (
     <div className="d-flex">
       <div className="col">
-        <div className="container-fluid">
-          <div className="row p-4">
+        <div className="container-fluid p-4">
+          <div className="d-flex flex-wrap align-items-stretch">
             {projects &&
               projects.map((project) => (
                 <div
-                  className="col-xl-2 col-md-4 col-sm-6 mb-4"
+                  className={
+                    Object.keys(selectedProject).length !== 0
+                      ? `col-xl-4 col-md-4 mb-2 ${styles.project_col} col-sm-6`
+                      : `col-xl-2 col-md-4 mb-2 ${styles.project_col} col-sm-6`
+                  }
                   key={project.id}
                 >
-                  <div
-                    className={styles.project_card}
-                    onClick={() => openProject(project.id)}
-                  >
+                  <div className={`card m-1 h-100 ${styles.project_container}`}>
                     <img
+                      className={`card-img-top ${styles.img}`}
                       src={project.image}
-                      alt="Project"
-                      className={styles.img_fluid}
+                      alt="Project_img"
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = errorImage;
+                      }}
                     />
-                    <p>{project.title}</p>
+                    <div className="card-body d-flex flex-column justify-content-between">
+                      <h6 className="card-title">{project.title}</h6>
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={() => openProject(project.id)}
+                      >
+                        View Project
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -61,55 +76,10 @@ function Projects() {
       {Object.keys(selectedProject).length !== 0 && <div className="vr"></div>}
       {Object.keys(selectedProject).length !== 0 && (
         <div className="col">
-          <div className="container-fluid">
-            <div className="row p-4">
-              <div className="d-flex justify-content-end">
-                <RiCloseLine
-                  size="30px"
-                  cursor="pointer"
-                  onClick={() => closeProject()}
-                />
-              </div>
-              <h4>{selectedProject.title}</h4>
-              <p>{selectedProject.description}</p>
-              <h4>Tools</h4>
-              {selectedProject.tools?.map((tool, index) => (
-                <div
-                  className="col-xl-4 col-md-6 col-sm-6 col-xs-2  mb-4"
-                  key={index}
-                >
-                  <OverlayTrigger
-                    placement="bottom"
-                    overlay={
-                      <Tooltip id={`tooltip-${tool.name}}`}>
-                        {tool.desc}
-                      </Tooltip>
-                    }
-                  >
-                    <div className="card">
-                      <a
-                        className="text-decoration-none"
-                        href={tool.url}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <div className="card-body">
-                          <div className="card-text text-center d-flex justify-content-center align-items-center">
-                            <img
-                              src={`https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${tool.url}&size=16`}
-                              alt="ToolIcon"
-                              className={styles.tool_icon}
-                            />
-                            <div className="mx-2 my-0">{tool.name}</div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </OverlayTrigger>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProjectDetail
+            selectedProject={selectedProject}
+            closeProject={() => closeProject()}
+          />
         </div>
       )}
     </div>
