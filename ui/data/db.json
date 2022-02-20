@@ -635,17 +635,6 @@
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
-      "id": 3,
-      "firstname": "Shine",
-      "lastname": "Dasari",
-      "username": "ShineDasri",
-      "password": "shine",
-      "gender": "Female",
-      "date": "1999-12-24",
-      "email": "dasarishine@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
       "id": 4,
       "firstname": "Yamini",
       "lastname": "Javapu",
@@ -654,28 +643,6 @@
       "gender": "Female",
       "date": "1999-11-28",
       "email": "yaminijavapu@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
-      "id": 5,
-      "firstname": "Harika ",
-      "lastname": "Javapu",
-      "username": "HarikaJavapu",
-      "password": "harika",
-      "gender": "Female",
-      "date": "1999-12-28",
-      "email": "harikajavapu@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
-      "id": 6,
-      "firstname": "Syam ",
-      "lastname": "Javapu",
-      "username": "SyamJavapu",
-      "password": "syamm",
-      "gender": "Male",
-      "date": "2005-12-28",
-      "email": "syamjavapu@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
@@ -720,6 +687,18 @@
       "gender": "Male",
       "date": "1999-12-28",
       "email": "haswanthpopuri@gmail.com",
+      "image": "https://i.stack.imgur.com/34AD2.jpg"
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "firstname": "Kishore Kumar",
+      "lastname": "Barik",
+      "username": "KishoreKumarBarik",
+      "password": "Kishore",
+      "date": "12-12-1990",
+      "gender": "Male",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     }
   ]
