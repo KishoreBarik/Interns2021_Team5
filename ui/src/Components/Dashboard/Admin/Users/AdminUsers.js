@@ -9,9 +9,7 @@ toast.configure();
 function AdminUsers() {
   const navigate = useNavigate();
   const [users, setUsers] = useState(null);
-
-
-  const fetchUsers = async () => {
+ const fetchUsers = async () => {
     const response = await fetch("http://localhost:5000/users");
     const users = await response.json();
     setUsers(users);
@@ -19,6 +17,7 @@ function AdminUsers() {
 
   const editSelected = (id) => {
     navigate(`/dashboard/users/${id}`);
+   
   };
 
   const AddUser = () => {
@@ -37,14 +36,17 @@ function AdminUsers() {
       'Content-Type':'application/json'
       }
      
-    })
-    fetchUsers();
-  }
+    }).then((result)=>{
+      result.json().then((response)=>{
+        console.warn(response);
+        fetchUsers();
+      })
+  
+  })
   
 }
-useEffect(() => {
-  fetchUsers();
-}, []);
+} 
+
   return (
     <>
       <div className="my-2">

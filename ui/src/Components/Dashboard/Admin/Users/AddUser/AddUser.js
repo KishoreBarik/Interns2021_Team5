@@ -17,7 +17,7 @@ function AddUser(props) {
   };
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
-  const [users, setUsers] = useState([]);
+  
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,6 +36,36 @@ function AddUser(props) {
     const { name, value } = e.target;
     setformValues({ ...formValues, [name]: value });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    setformErrors(handleValidation(formValues));
+    if (!Object.values(formValues).includes("")) {
+      if (currentPath === "addUser") {
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        });
+      } else {
+        fetch(`http://localhost:5000/projects/${currentPath}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        });
+      }
+      navigate("/dashboard");
+      SuccessToast(
+        currentPath === "addProject"
+          ? "Project Added Successfully"
+          : "Updated Successfully"
+      );
+      }
+  };
 
 
   const postUser=async()=>{
@@ -51,6 +81,20 @@ function AddUser(props) {
    result=await result.json();
    console.warn(result);
    fetchUsers();
+   if(currentPath==='editSelected'){
+    fetch(`http://localhost:5000/users/${currentPath}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formValues),
+    });
+    result=await result.json();
+    console.warn(result);
+    fetchUsers();
+    navigate("/dashboard")
+
+   }
    setformErrors(handleValidation(formValues));
    if (!Object.values(formValues).includes("")) {
        setformValues({ ...formValues });
@@ -100,7 +144,7 @@ function AddUser(props) {
 
       fetchUsers(currentPath);
     }
-    console.log(currentPath);
+   
   }, [currentPath]);
 
   return (
@@ -220,7 +264,7 @@ function AddUser(props) {
                   <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={postUser}
+                    onClick={handleSubmit}
                   >
                     Save
                   </button>

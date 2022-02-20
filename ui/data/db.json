@@ -58,59 +58,14 @@
     },
     {
       "id": 2,
-      "title": "Temporary Disposable Email Server",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-      "image": "https://tempmail.altmails.com/image/tempmail-logo.png",
-      "tools": [
-        {
-          "id": 1,
-          "title": "Bootstrap",
-          "url": "https://getbootstrap.com/",
-          "description": "description1"
-        },
-        {
-          "id": 2,
-          "title": "Google",
-          "url": "https://www.google.com/",
-          "description": "description2"
-        },
-        {
-          "id": 3,
-          "title": "Youtube",
-          "url": "https://www.youtube.com/",
-          "description": "description3"
-        },
-        {
-          "id": 4,
-          "title": "Stack overflow",
-          "url": "https://stackoverflow.com/",
-          "description": "description4"
-        },
-        {
-          "id": 5,
-          "title": "Bootstrap",
-          "url": "https://getbootstrap.com/",
-          "description": "description5"
-        },
-        {
-          "id": 6,
-          "title": "Google",
-          "url": "https://www.google.com/",
-          "description": "description6"
-        },
-        {
-          "id": 7,
-          "title": "Youtube",
-          "url": "https://www.youtube.com/",
-          "description": "description7"
-        },
-        {
-          "id": 8,
-          "title": "Stack overflow",
-          "url": "https://stackoverflow.com/",
-          "description": "description8"
-        }
-      ]
+      "firstname": "Saraswathi",
+      "lastname": "Reddy",
+      "username": "Saraswath",
+      "password": "saraswathi",
+      "gender": "Female",
+      "date": "2000-12-28",
+      "email": "saraswathireddy@gmail.com",
+      "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
       "id": 3,

@@ -21,6 +21,13 @@ function AdminProfile(props) {
         );
         console.log(formValues);
     }
+    // const fetchAdmin = async (id) => {
+    //   const adminId = parseInt(id);
+    //   console.log(adminId);
+    //   const response = await fetch(`http://localhost:5000/users/${adminId}`);
+    //   const admin = await response.json();
+    //   setFormValues(admin);
+    //};
     const handleSubmit=(event)=>{
         event.preventDefault();
         setFormErrors(validate(formValues));
@@ -32,7 +39,6 @@ function AdminProfile(props) {
         if(Object.keys(formErrors).length===0 && isSubmit){
             console.log(formValues);
       
-            
         }
 
         setFormValues({...formValues,...props.selectedUser})
