@@ -13,7 +13,7 @@ function AddUser(props) {
     email: "",
     password: "",
     date: "",
-    gender: "",
+    gender: "Male",
   };
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
