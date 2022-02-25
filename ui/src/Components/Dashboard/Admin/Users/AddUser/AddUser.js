@@ -113,12 +113,12 @@ function AddUser(props) {
         <Loading />
       ) : (
         <div className="container-fluid">
-          <div className="row d-flex justify-content-center align-items-center">
+          <div className="row content d-flex justify-content-center align-items-center">
             <div className="col-md-8  my-4">
               <div>
                 <div className="d-flex justify-content-between">
                   <h4 className="mb-4">
-                    {currentPath === "AddUser" ? "Add user" : "Edit user"}
+                    {currentPath === "addUser" ? "Add user" : "Edit user"}
                   </h4>
                   <RiCloseLine
                     size="30px"

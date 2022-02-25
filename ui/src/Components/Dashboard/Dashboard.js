@@ -7,10 +7,13 @@ import Projects from "./Projects/Projects";
 
 function Dashboard(props) {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx);
 
   const widget =
-    authCtx.loggedEmail === "toolpot@gmail.com" ? <Categories /> : <Projects />;
+    authCtx.loggedUser.email === "toolpot@gmail.com" ? (
+      <Categories />
+    ) : (
+      <Projects />
+    );
   return (
     <div>
       <Navbar />

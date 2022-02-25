@@ -4,7 +4,6 @@ const AuthContext = createContext({
   isLoggedIn: false,
   onLogout: () => {},
   onLogin: (email, password) => {},
-  loggedUser: {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -16,8 +15,7 @@ export const AuthContextProvider = (props) => {
   const fetchLogged = async (email) => {
     const response = await fetch(`http://localhost:5000/users/?email=${email}`);
     const loggedAccount = await response.json();
-    console.log(loggedAccount);
-    setloggedUser({ ...loggedAccount[0] });
+    setloggedUser(loggedAccount[0]);
   };
 
   useEffect(() => {
