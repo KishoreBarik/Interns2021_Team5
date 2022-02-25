@@ -5,13 +5,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { AuthContextProvider } from "./Context/AuthContext";
+import { UsersContextProvider } from "./Context/UsersContext";
 
 
 ReactDOM.render(
   <AuthContextProvider>
-  <Router>
-    <App />
-  </Router>
+    <UsersContextProvider>
+      <Router>
+        <App />
+      </Router>
+    </UsersContextProvider>
   </AuthContextProvider>,
   document.getElementById("root")
 );
