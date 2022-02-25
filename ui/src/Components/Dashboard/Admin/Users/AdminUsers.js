@@ -1,101 +1,144 @@
-import React, { useEffect, useState } from "react";
-import Collapse from "react-bootstrap/Collapse";
+import React, { useContext, useEffect, useState } from "react";
+import { BiEdit } from "react-icons/bi";
+import { MdDelete } from "react-icons/md";
 import Image from "react-bootstrap/Image";
-import AddUser from "./AddUser/AddUser";
 import "./AdminUsers.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import errorImage from "../../../../Assets/no-image.png";
+import UsersContext from "../../../../Context/UsersContext";
+import Loading from "../../../../Common/Loading/Loading";
 
+toast.configure();
 function AdminUsers() {
-  const [users, setUsers] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [isAdd, setIsAdd] = useState(false);
-  const [selectedUser, setSelectedUser] = useState({});
+  const navigate = useNavigate();
+  const [selectedUserId, setselectedUserId] = useState();
 
-  let userIndex;
-  const fetchUsers = async () => {
-    const response = await fetch("http://localhost:5000/users");
-    const users = await response.json();
-    setUsers(users);
-  };
+  const usersCtx = useContext(UsersContext);
 
   const editSelected = (id) => {
-    userIndex = users.findIndex((p) => p.id === id);
-    setSelectedUser(users[userIndex]);
-    id === selectedUser.id && !open ? setOpen(true) : setOpen(false);
+    navigate(`/dashboard/users/${id}`);
+  };
+
+  const AddUser = () => {
+    navigate(`/dashboard/users/addUser`);
   };
 
   useEffect(() => {
-    fetchUsers();
+    usersCtx.fetchUsers();
   }, []);
-  return (
-    <div className="my-2">
-      <div className="d-flex justify-content-end my-2">
-        <button
-          onClick={() => setIsAdd(!isAdd)}
-          aria-controls="addUser"
-          aria-expanded={isAdd}
-          className="btn btn-primary float-right"
-        >
-          {isAdd ? "Cancel" : "Add user"}
-        </button>
-      </div>
-      <Collapse in={isAdd}>
-        <div id="addUser" className="bg-light my-2">
-          <AddUser title="Add User Form" />
-        </div>
-      </Collapse>
 
-      <div className="list-group">
-        {users &&
-          users.map((user) => (
-            <div
-              className="list-group-item flex-column align-items-start"
-              key={user.id}
-            >
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center">
-                  <Image
-                    src={user.image}
-                    className="img-thumbnail"
-                    width={50}
-                    height={50}
-                  />
-                  <div className="mx-2">
-                    <h6 className="m-0">{user.username}</h6>
-                  </div>
+  const setselectedUser = (id) => {
+    setselectedUserId(id);
+    console.log(id, selectedUserId);
+  };
+
+  return (
+    <>
+      {!usersCtx.users ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="my-2">
+            <div>
+              <div className="d-flex justify-content-end my-2">
+                <button
+                  type="button"
+                  onClick={AddUser}
+                  className="btn btn-primary float-right"
+                >
+                  Add user
+                </button>
+              </div>
+              <div className="list-group">
+                {usersCtx.users &&
+                  usersCtx.users.map((user) => (
+                    <div
+                      className="list-group-item flex-column align-items-start"
+                      key={user.id}
+                    >
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="d-flex align-items-center">
+                          <Image
+                            src={"https://i.stack.imgur.com/34AD2.jpg"}
+                            className="img-thumbnail"
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src = errorImage;
+                            }}
+                            width={50}
+                            height={50}
+                          />
+                          <div className="mx-2">
+                            <h6 className="m-0">{user.username}</h6>
+                          </div>
+                        </div>
+                        <div className="d-flex gap-2">
+                          <button
+                            type="button"
+                            className="btn btn-outline-secondary"
+                            onClick={() => editSelected(user.id)}
+                          >
+                            <BiEdit size={20} />
+                          </button>
+
+                          <button
+                            type="button"
+                            className="btn btn-outline-danger"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            onClick={() => setselectedUser(user.id)}
+                          >
+                            <MdDelete size={20} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="modal fade"
+            id="deleteModal"
+            tabIndex="-1"
+            aria-labelledby="deleteModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <h5
+                    className="modal-title m-4 text-center"
+                    id="deleteModalLabel"
+                  >
+                    Are you sure want to delete this user?
+                  </h5>
                 </div>
-                <div>
+                <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-outline-secondary mx-2"
-                    onClick={() => editSelected(user.id)}
-                    aria-controls={user.id}
-                    aria-expanded={
-                      user.id === selectedUser.id && open === false
-                        ? true
-                        : false
-                    }
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
                   >
-                    {user.id === selectedUser.id && !open ? "Cancel" : "Edit"}
+                    Cancel
                   </button>
-                  <button type="button" className="btn btn-outline-danger">
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    data-bs-dismiss="modal"
+                    onClick={() => usersCtx.deleteUser(selectedUserId)}
+                  >
                     Delete
                   </button>
                 </div>
               </div>
-              <Collapse
-                in={
-                  user.id === selectedUser.id && open === false ? true : false
-                }
-                className="my-3"
-              >
-                <div id={user.id} className="bg-light">
-                  <AddUser selectedUser={selectedUser} title="Edit User Form" />
-                </div>
-              </Collapse>
             </div>
-          ))}
-      </div>
-    </div>
+          </div>
+        </>
+      )}
+    </>
   );
 }
 

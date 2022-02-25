@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
-import "./AddUser.module.css";
+import React, { useEffect, useState } from "react";
+import Navbar from "../../../Navbar/Navbar.js";
+import { useNavigate, useLocation } from "react-router-dom";
+import { RiCloseLine } from "react-icons/ri";
+import SuccessToast from "../../../../../Common/SuccessToast.js";
+import Loading from "../../../../../Common/Loading/Loading.js";
 
 function AddUser(props) {
   const initialValues = {
-    id: "",
     firstname: "",
     lastname: "",
     username: "",
@@ -12,28 +15,64 @@ function AddUser(props) {
     date: "",
     gender: "",
   };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [formValues, setformValues] = useState(initialValues);
+  const [formErrors, setformErrors] = useState({});
 
-  const handleChange = (event) => {
-    console.log(event.target);
-    const { name, value } = event.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname.split("/")[3];
+
+  const fetchUser = async (id) => {
+    const response = await fetch(`http://localhost:5000/users/${parseInt(id)}`);
+    const user = await response.json();
+    setformValues(user);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
+
+  const handleChanges = (e) => {
+    const { name, value } = e.target;
+    setformValues({ ...formValues, [name]: value });
   };
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setformErrors(handleValidation(formValues));
+    if (!Object.values(formValues).includes("")) {
+      formValues.id = formValues.id === undefined ? Date.now() : formValues.id;
+      setformValues({ ...formValues });
+      // console.log(formValues);
+      setformValues(initialValues);
+      console.log("user formvalues ", formValues);
+      console.log(
+        formValues.id === undefined ? "error" : Date.now() + formValues.id
+      );
+      if (currentPath === "addUser") {
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        });
+      } else {
+        fetch(`http://localhost:5000/users/${currentPath}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        });
+      }
+      navigate("/dashboard");
+      SuccessToast(
+        currentPath === "addUser"
+          ? "User Added Successfully"
+          : "Updated Successfully"
+      );
     }
-    // setFormValues({...formValues,...props.selectedUser})
-  }, []);
-  const validate = (values) => {
+  };
+
+  const handleValidation = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.firstname) {
@@ -42,8 +81,8 @@ function AddUser(props) {
     if (!values.lastname) {
       errors.lastname = "Lastname is required";
     }
-    if (!values.dob) {
-      errors.dob = "Date of birth is required";
+    if (!values.date) {
+      errors.date = "Date of birth is required";
     }
     if (!values.username) {
       errors.username = "Username is required";
@@ -61,120 +100,146 @@ function AddUser(props) {
     return errors;
   };
 
+  useEffect(() => {
+    if (currentPath !== "addUser") {
+      fetchUser(currentPath);
+    }
+  }, [currentPath]);
+
   return (
-    <section className="container-fluid">
-      <div className="row content d-flex justify-content-center align-items-center">
-        <div className="col-md-6">
-          <form className="mb-3" onSubmit={handleSubmit}>
-            <h6 className="nm-4 text-center fs-1 m-4">{props.title}</h6>
-            <div className="card shadow-sm bg-white p-4">
-              <div className="row">
-                <div className="col">
-                  <label>First Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstname"
-                    placeholder="Firstname"
-                    value={formValues.firstname}
-                    onChange={handleChange}
+    <div>
+      <Navbar />
+      {Object.values(formValues).includes("") && currentPath !== "addUser" ? (
+        <Loading />
+      ) : (
+        <div className="container-fluid">
+          <div className="row content d-flex justify-content-center align-items-center">
+            <div className="col-md-8  my-4">
+              <div>
+                <div className="d-flex justify-content-between">
+                  <h4 className="mb-4">
+                    {currentPath === "addUser" ? "Add user" : "Edit user"}
+                  </h4>
+                  <RiCloseLine
+                    size="30px"
+                    cursor="pointer"
+                    onClick={() => navigate("/dashboard")}
                   />
-                  <p>{formErrors.firstname}</p>
                 </div>
+                <form>
+                  <div className="card shadow-sm bg-white p-4">
+                    <div className="row">
+                      <div className="col">
+                        <label>First Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="firstname"
+                          placeholder="Firstname"
+                          value={formValues.firstname}
+                          onChange={handleChanges}
+                        />
+                        <p className="text-danger">{formErrors.firstname}</p>
+                      </div>
 
-                <div className="col">
-                  <label>Last Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastname"
-                    placeholder="Last Name"
-                    value={formValues.lastname}
-                    onChange={handleChange}
-                  />
-                  <p>{formErrors.lastname}</p>
-                </div>
-              </div>
+                      <div className="col">
+                        <label>Last Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="lastname"
+                          placeholder="Last Name"
+                          value={formValues.lastname}
+                          onChange={handleChanges}
+                        />
+                        <p className="text-danger">{formErrors.firstname}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <label>User Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          placeholder="Username"
+                          value={formValues.username}
+                          onChange={handleChanges}
+                        />
+                        <p className="text-danger">{formErrors.username}</p>
+                      </div>
 
-              <div className="row">
-                <div className="col">
-                  <label>User Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    placeholder="Username"
-                    value={formValues.username}
-                    onChange={handleChange}
-                  />
-                  <p>{formErrors.username}</p>
-                </div>
+                      <div className="col">
+                        <label>Password</label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          name="password"
+                          placeholder="Password"
+                          value={formValues.password}
+                          onChange={handleChanges}
+                        />
+                        <p className="text-danger">{formErrors.password}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <label>Date of Birth</label>
+                        <input
+                          type="date"
+                          className="form-control"
+                          name="date"
+                          placeholder="Date"
+                          value={formValues.date}
+                          onChange={handleChanges}
+                        />
+                        <p className="text-danger">{formErrors.date}</p>
+                      </div>
 
-                <div className="col">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    placeholder="Password"
-                    value={formValues.password}
-                    onChange={handleChange}
-                  />
-                  <p>{formErrors.password}</p>
-                </div>
-              </div>
+                      <div className="col">
+                        <label>Gender</label>
+                        <select
+                          className="form-select"
+                          name="gender"
+                          value={formValues.gender}
+                          onChange={handleChanges}
+                        >
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="form-group mb-1">
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        name="email"
+                        placeholder="Email"
+                        value={formValues.email}
+                        onChange={handleChanges}
+                      />
+                    </div>
+                    <p className="text-danger">{formErrors.email}</p>
 
-              <div className="row">
-                <div className="col">
-                  <div className="form-group">
-                    <label>Date of Birth</label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      name="date"
-                      placeholder="Date"
-                      value={formValues.date}
-                      onChange={handleChange}
-                    />
-                    <p>{formErrors.email}</p>
+                    <div className="d-flex justify-content-end">
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={handleSubmit}
+                      >
+                        Save
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="col">
-                  <label>Gender</label>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    // value={formValues.gender}
-                  >
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  placeholder="Email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                />
-                <p>{formErrors.email}</p>
-              </div>
-
-              <div className="text-center">
-                <button type="submit" className="btn-sm btn-primary">
-                  Add User
-                </button>
+                </form>
               </div>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-    </section>
+      )}
+    </div>
   );
 }
 
