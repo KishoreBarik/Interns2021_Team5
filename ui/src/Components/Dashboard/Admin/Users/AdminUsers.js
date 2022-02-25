@@ -26,6 +26,7 @@ function AdminUsers() {
 
   useEffect(() => {
     usersCtx.fetchUsers();
+    console.log(usersCtx.users);
   }, []);
 
   const setselectedUser = (id) => {
