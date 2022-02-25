@@ -529,14 +529,6 @@
       ]
     },
     {
-      "title": "dummy1",
-      "description": "sdfhsjdfhjksdkf",
-      "image": "sdfjhsjkdhfsjkdf",
-      "users": [],
-      "tools": [],
-      "id": 1644675350345
-    },
-    {
       "title": "dummy4",
       "description": "sdfhskjhdfjksdfh",
       "image": "http://machineryinvest.com/userFiles/no-image.png",
@@ -551,6 +543,14 @@
       "users": [],
       "tools": [],
       "id": 1644675909980
+    },
+    {
+      "title": "asjfsjdkfjslkdf",
+      "description": "aksdjfksjdfklsdf",
+      "image": "asdjfksdfjkhsdkjfhjskdf",
+      "users": [],
+      "tools": [],
+      "id": 1645812112626
     }
   ],
   "tools": [
@@ -688,17 +688,16 @@
       "date": "1999-12-28",
       "email": "haswanthpopuri@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
-    }
-  ],
-  "admin": [
+    },
     {
-      "id": 1,
-      "firstname": "Kishore Kumar",
+      "id": 11,
+      "firstname": "Kishore Kumarrrr",
       "lastname": "Barik",
       "username": "KishoreKumarBarik",
       "password": "Kishore",
-      "date": "12-12-1990",
+      "date": "1990-12-12",
       "gender": "Male",
+      "email": "toolpot@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     }
   ]

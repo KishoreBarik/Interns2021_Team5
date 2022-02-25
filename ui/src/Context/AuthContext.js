@@ -4,24 +4,35 @@ const AuthContext = createContext({
   isLoggedIn: false,
   onLogout: () => {},
   onLogin: (email, password) => {},
+  loggedUser: {},
 });
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [loggedUser, setloggedUser] = useState({});
   const [loggedEmail, setloggedEmail] = useState("");
   const [loggedPass, setloggedPass] = useState("");
+
+  const fetchLogged = async (email) => {
+    const response = await fetch(`http://localhost:5000/users/?email=${email}`);
+    const loggedAccount = await response.json();
+    console.log(loggedAccount);
+    setloggedUser({ ...loggedAccount[0] });
+  };
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
     const storedEmail = localStorage.getItem("email");
+    const storedPass = localStorage.getItem("pass");
 
-    console.log("isLoggedIn = ", storedIsLoggedIn);
-    console.log("email = ", storedEmail);
     if (storedIsLoggedIn === "true") {
       setisLoggedIn(true);
+      fetchLogged(storedEmail);
       setloggedEmail(storedEmail);
+      setloggedPass(storedPass);
     }
   }, []);
+
   const loginHandler = (email, password) => {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("email", email);
@@ -29,6 +40,7 @@ export const AuthContextProvider = (props) => {
     setloggedEmail(email);
     setloggedPass(password);
     setisLoggedIn(true);
+    fetchLogged(email);
   };
 
   const logoutHandler = () => {
@@ -45,6 +57,7 @@ export const AuthContextProvider = (props) => {
         loggedPass: loggedPass,
         onLogout: logoutHandler,
         onLogin: loginHandler,
+        loggedUser: loggedUser,
       }}
     >
       {props.children}
