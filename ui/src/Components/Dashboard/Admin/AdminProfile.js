@@ -28,7 +28,7 @@ function AdminProfile(props) {
   };
 
   const fetchAdmin = async (id) => {
-    const response = await fetch(`http://localhost:5000/admin/${parseInt(id)}`);
+    const response = await fetch(`http://localhost:5000/users/${parseInt(id)}`);
     const admin = await response.json();
     setFormValues(admin);
   };
@@ -41,7 +41,7 @@ function AdminProfile(props) {
       formValues.id = formValues.id === undefined ? Date.now() : formValues.id;
       setFormValues({ ...formValues });
       setFormValues(initialValues);
-      fetch(`http://localhost:5000/admin/${currentPath}`, {
+      fetch(`http://localhost:5000/users/${currentPath}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
