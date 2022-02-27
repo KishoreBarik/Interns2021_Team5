@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\API\projectController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\projectaccessController;
+use App\Http\Controllers\API\toolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +18,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::post('/register', 'Api\AuthController@register');
-Route::post('/login', 'Api\AuthController@login');
-Route::get('/user', 'Api\AuthController@user')->middleware('auth:api');
-Route::post('/forgot','Api\AuthController@forgot');
+Route::post('/register', 'API\AuthController@register');
+Route::post('/login', 'API\AuthController@login');
+Route::get('/user', 'API\AuthController@user')->middleware('auth:api');
+Route::post('/forgot','API\AuthController@forgot');
 
 
 Route::middleware('auth:api')->group(function() {
@@ -79,5 +82,11 @@ Route::middleware('auth:api')->group(function() {
 Route::get('user', 'AuthController@show');
 });
 
+Route::apiResource('/project', 'API\projectController')->middleware('auth:api');
+
+Route::apiResource('/projectaccess', 'API\projectaccessController')->middleware('auth:api');
+
+
+Route::apiResource('/tool', 'API\toolController')->middleware('auth:api');
 
 
