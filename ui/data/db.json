@@ -636,28 +636,6 @@
   ],
   "users": [
     {
-      "id": 1,
-      "firstname": "Pavani",
-      "lastname": "Javapu",
-      "username": "PavaniJavapu",
-      "password": "pavani",
-      "gender": "Female",
-      "date": "1999-12-28",
-      "email": "pavanijavapu@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
-      "id": 2,
-      "firstname": "Saraswathi",
-      "lastname": "Reddy",
-      "username": "SaraswathiReddyyy",
-      "password": "saraswathi",
-      "gender": "Female",
-      "date": "2000-12-28",
-      "email": "saraswathireddy@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
       "id": 4,
       "firstname": "Yamini",
       "lastname": "Javapu",
@@ -669,17 +647,6 @@
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
-      "id": 7,
-      "firstname": "Charan ",
-      "lastname": "Vinay",
-      "username": "Charanvinay",
-      "password": "charan",
-      "gender": "Male",
-      "date": "1999-12-28",
-      "email": "charanvinay@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
       "id": 8,
       "firstname": "Kiran ",
       "lastname": "Siva",
@@ -688,17 +655,6 @@
       "gender": "Male",
       "date": "1999-12-28",
       "email": "kiransiva@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
-      "id": 9,
-      "firstname": "Aravindh",
-      "lastname": "Ippili",
-      "username": "Aravindhippili",
-      "password": "aravindh",
-      "gender": "Male",
-      "date": "1999-12-28",
-      "email": "aravindhippili@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
@@ -734,16 +690,6 @@
       "id": 1645814855155
     },
     {
-      "firstname": "dummy7",
-      "lastname": "asjkdfhsd",
-      "username": "dummy7",
-      "email": "asdfsdfsdfsdf@gmail.com",
-      "password": "asjdkfhsjkdhfj",
-      "date": "2022-02-22",
-      "gender": "Female",
-      "id": 1645815360987
-    },
-    {
       "firstname": "asjdfhksjdhfjksdf",
       "lastname": "asjkdfhskjdhfjkds",
       "username": "dummy8",
@@ -762,6 +708,16 @@
       "date": "2022-02-16",
       "gender": "Female",
       "id": 1645815544125
+    },
+    {
+      "firstname": "kasturi",
+      "lastname": "Muppana",
+      "username": "kasturi",
+      "email": "muppanakasturi@gmail.com",
+      "password": ".....",
+      "date": "2022-02-03",
+      "gender": "Female",
+      "id": 1645867422947
     }
   ]
 }
