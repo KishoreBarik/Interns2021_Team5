@@ -650,7 +650,7 @@
       "id": 2,
       "firstname": "Saraswathi",
       "lastname": "Reddy",
-      "username": "SaraswathiReddyyy",
+      "username": "SaraswathiReddy",
       "password": "saraswathi",
       "gender": "Female",
       "date": "2000-12-28",
@@ -676,7 +676,7 @@
       "password": "charan",
       "gender": "Male",
       "date": "1999-12-28",
-      "email": "charanvinay@gmail.com",
+      "email": "charanvinay778@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
@@ -724,26 +724,6 @@
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
-      "firstname": "asjfdhjksdhjkf",
-      "lastname": "ajksdhfdj",
-      "username": "dummy6",
-      "email": "asdfjkhd@gmail.com",
-      "password": "asjdfhdj",
-      "date": "2022-02-23",
-      "gender": "Female",
-      "id": 1645814855155
-    },
-    {
-      "firstname": "dummy7",
-      "lastname": "asjkdfhsd",
-      "username": "dummy7",
-      "email": "asdfsdfsdfsdf@gmail.com",
-      "password": "asjdkfhsjkdhfj",
-      "date": "2022-02-22",
-      "gender": "Female",
-      "id": 1645815360987
-    },
-    {
       "firstname": "asjdfhksjdhfjksdf",
       "lastname": "asjkdfhskjdhfjkds",
       "username": "dummy8",
@@ -762,6 +742,26 @@
       "date": "2022-02-16",
       "gender": "Female",
       "id": 1645815544125
+    },
+    {
+      "firstname": "asdfhksjhdjfk",
+      "lastname": "asfhjkshdfjksdf",
+      "username": "dummy8",
+      "email": "asdfhashdf@gmail.com",
+      "password": "asdfhjskdhfksjd",
+      "date": "2022-02-16",
+      "gender": "Male",
+      "id": 1645869601325
+    },
+    {
+      "firstname": "asdfhjkashdkfj",
+      "lastname": "ajkshfkasdfjd",
+      "username": "ajksdhfjkashdfjkd",
+      "email": "asdfhsdfjkdfkj@gmail.com",
+      "password": "ajksdhfjksahdfjk",
+      "date": "2022-02-22",
+      "gender": "Male",
+      "id": 1645869651778
     }
   ]
 }

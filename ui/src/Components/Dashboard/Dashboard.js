@@ -17,7 +17,7 @@ function Dashboard(props) {
   return (
     <div>
       <Navbar />
-      {!authCtx.loggedUser ? <Loading /> : widget}
+      {!authCtx.loggedEmail ? <Loading /> : widget}
     </div>
   );
 }
