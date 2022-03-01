@@ -25,8 +25,8 @@ function AdminUsers() {
   };
 
   useEffect(() => {
+    console.log("fetching users...");
     usersCtx.fetchUsers();
-    console.log(usersCtx.users);
   }, []);
 
   const setselectedUser = (id) => {
@@ -64,7 +64,7 @@ function AdminUsers() {
                             src={"https://i.stack.imgur.com/34AD2.jpg"}
                             className="img-thumbnail"
                             onError={({ currentTarget }) => {
-                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.onerror = null;
                               currentTarget.src = errorImage;
                             }}
                             width={50}

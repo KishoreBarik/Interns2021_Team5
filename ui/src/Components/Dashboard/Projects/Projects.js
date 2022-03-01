@@ -19,7 +19,6 @@ function Projects() {
 
   const openProject = (id) => {
     projectIndex = projectCtx.projects.findIndex((p) => p.id === id);
-    console.log(projectCtx.projects[projectIndex]);
     setselectedProject(projectCtx.projects[projectIndex]);
   };
 

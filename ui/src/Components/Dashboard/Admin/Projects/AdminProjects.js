@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import errorImage from "../../../../Assets/no-image.png";
 import ProjectsContext from "../../../../Context/ProjectsContext";
-import Spinner from "react-bootstrap/Spinner";
 import Loading from "../../../../Common/Loading/Loading";
 
 toast.configure();
@@ -32,7 +31,6 @@ function AdminProjects() {
 
   useEffect(() => {
     projectCtx.fetchProjects();
-    console.log(projectCtx.projects);
   }, []);
   return (
     <>

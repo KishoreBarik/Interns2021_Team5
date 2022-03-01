@@ -58,7 +58,7 @@
     },
     {
       "id": 2,
-      "title": "Temporary Disposable Email Server",
+      "title": "Temporary Disposable Email Serverr",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "image": "https://tempmail.altmails.com/image/tempmail-logo.png",
       "tools": [
@@ -113,17 +113,6 @@
       ],
       "users": [
         {
-          "id": 8,
-          "firstname": "Kiran ",
-          "lastname": "Siva",
-          "username": "Kiransiva",
-          "password": "kiran",
-          "gender": "Male",
-          "date": "1999-12-28",
-          "email": "kiransiva@gmail.com",
-          "image": "https://i.stack.imgur.com/34AD2.jpg"
-        },
-        {
           "id": 9,
           "firstname": "Aravindh",
           "lastname": "Ippili",
@@ -132,6 +121,17 @@
           "gender": "Male",
           "date": "1999-12-28",
           "email": "aravindhippili@gmail.com",
+          "image": "https://i.stack.imgur.com/34AD2.jpg"
+        },
+        {
+          "id": 4,
+          "firstname": "Yamini",
+          "lastname": "Javapu",
+          "username": "YaminiJavapu",
+          "password": "yamini",
+          "gender": "Female",
+          "date": "1999-11-28",
+          "email": "yaminijavapu@gmail.com",
           "image": "https://i.stack.imgur.com/34AD2.jpg"
         }
       ]
@@ -680,17 +680,6 @@
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
-      "id": 8,
-      "firstname": "Kiran ",
-      "lastname": "Siva",
-      "username": "Kiransiva",
-      "password": "kiran",
-      "gender": "Male",
-      "date": "1999-12-28",
-      "email": "kiransiva@gmail.com",
-      "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
       "id": 9,
       "firstname": "Aravindh",
       "lastname": "Ippili",
@@ -722,46 +711,6 @@
       "gender": "Male",
       "email": "toolpot@gmail.com",
       "image": "https://i.stack.imgur.com/34AD2.jpg"
-    },
-    {
-      "firstname": "asjdfhksjdhfjksdf",
-      "lastname": "asjkdfhskjdhfjkds",
-      "username": "dummy8",
-      "email": "asjdhfjkshdfjksdh@gmail.com",
-      "password": "sfsafsdf",
-      "date": "2022-02-15",
-      "gender": "Male",
-      "id": 1645815508035
-    },
-    {
-      "firstname": "sdfshajhfjkad",
-      "lastname": "ajshdfjkshdf",
-      "username": "dummy9",
-      "email": "asdjfhasdfjksdkjf@gmail.com",
-      "password": "asjkdhfsjkhdfjks",
-      "date": "2022-02-16",
-      "gender": "Female",
-      "id": 1645815544125
-    },
-    {
-      "firstname": "asdfhksjhdjfk",
-      "lastname": "asfhjkshdfjksdf",
-      "username": "dummy8",
-      "email": "asdfhashdf@gmail.com",
-      "password": "asdfhjskdhfksjd",
-      "date": "2022-02-16",
-      "gender": "Male",
-      "id": 1645869601325
-    },
-    {
-      "firstname": "asdfhjkashdkfj",
-      "lastname": "ajkshfkasdfjd",
-      "username": "ajksdhfjkashdfjkd",
-      "email": "asdfhsdfjkdfkj@gmail.com",
-      "password": "ajksdhfjksahdfjk",
-      "date": "2022-02-22",
-      "gender": "Male",
-      "id": 1645869651778
     }
   ]
 }

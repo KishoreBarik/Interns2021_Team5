@@ -9,7 +9,7 @@ function Categories() {
       <nav>
         <div className="nav nav-tabs" id="nav-tab" role="tablist">
           <button
-            className="nav-link active"
+            className="nav-link"
             id="nav-users-tab"
             data-bs-toggle="tab"
             data-bs-target="#nav-users"
@@ -21,7 +21,7 @@ function Categories() {
             Users
           </button>
           <button
-            className="nav-link"
+            className="nav-link active"
             id="nav-projects-tab"
             data-bs-toggle="tab"
             data-bs-target="#nav-projects"
@@ -36,7 +36,7 @@ function Categories() {
       </nav>
       <div className="tab-content" id="nav-tabContent">
         <div
-          className="tab-pane fade show active"
+          className="tab-pane fade "
           id="nav-users"
           role="tabpanel"
           aria-labelledby="nav-users-tab"
@@ -44,7 +44,7 @@ function Categories() {
           <AdminUsers />
         </div>
         <div
-          className="tab-pane fade"
+          className="tab-pane fade show active"
           id="nav-projects"
           role="tabpanel"
           aria-labelledby="nav-projects-tab"
