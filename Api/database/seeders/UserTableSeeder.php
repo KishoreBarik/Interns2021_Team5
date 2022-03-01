@@ -16,10 +16,10 @@ class UserTableSeeder extends Seeder
     {
         //
         //factory(App\User::class, 2)->create()
-        \App\Models\User::factory()->count(2)->create();
-        //->each(function($user){
-         //   $user->role()->save(factory(App\Role::class)->make());
+        \App\Models\User::factory()->count(2)->create()
+        ->each(function($user){
+            $user->role()->save(\App\Models\Role::factory()->make());
 
-        
+        });
     }
 }
