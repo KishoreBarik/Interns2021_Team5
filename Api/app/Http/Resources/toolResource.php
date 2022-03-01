@@ -17,3 +17,4 @@ class toolResource extends JsonResource
         return parent::toArray($request);
     }
 }
+

@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\projectController;
-use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\projectaccessController;
 use App\Http\Controllers\API\toolController;
 
@@ -18,15 +20,22 @@ use App\Http\Controllers\API\toolController;
 |
 */
 
-Route::post('/register', 'API\AuthController@register');
-Route::post('/login', 'API\AuthController@login');
-Route::get('/user', 'API\AuthController@user')->middleware('auth:api');
-Route::post('/forgot','API\AuthController@forgot');
+//Route::post('/register', 'API/AuthController@register');
+//Route::post('/login', 'API/AuthController@login');
+//Route::get('/user', 'API/AuthController@user')->middleware('auth:api');
+//Route::post('/forgot','API/AuthController@forgot');
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
 
+Route::middleware('auth:api')->group(function(){
+    Route::middleware(['scope:admin, user'])->get('users', function(Request $request){
+        return User::get();
+    });
 
+});
 Route::middleware('auth:api')->group(function() {
 
-    Route::get('user/{userId}/detail', 'AuthController@show');
+    Route::get('user/{userId}/detail', 'UserController@show');
 });
 Route::middleware(['auth:api', 'role'])->group(function() {
 

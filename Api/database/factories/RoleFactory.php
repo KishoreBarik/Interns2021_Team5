@@ -21,5 +21,5 @@ class RoleFactory extends Factory
             //
             'role' => $faker->randomElement(['admin', 'user'])
         ];
-    }
+    } 
 }

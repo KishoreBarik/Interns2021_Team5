@@ -58,7 +58,8 @@ class projectController extends Controller
     public function show(project $project)
     {
         //
-        return response([ 'project' => new projectResource($project), 'message' => 'Retrieved successfully'], 200);
+        //return response([ 'project' => new projectResource($project), 'message' => 'Retrieved successfully'], 200);
+        return new projectResource($project);
     }
 
     /**
@@ -71,8 +72,19 @@ class projectController extends Controller
     public function update(Request $request, project $project)
     {
         //
-        $project->update($request::all());
-        return response(['project' => new projectResurce($project), 'message'=> 'Retrived successfully'], 200);
+        //$project->update($request::all());
+
+        $project->update([
+
+            'project_id'=>$request->input('project_id'),
+            'project_name'=>$request->input('project_name'),
+            'description'=>$request->input('description'),
+            'user_id'=>$request->input('user_id'),
+            'tool_id'=>$request->input('tool_id'),
+            'added_by'=>$request->input('added_by'),
+            'status'=>$request->input('status'),
+        ]);
+        return response(['project' => new projectResource($project), 'message'=> 'Retrived successfully'], 200);
     }
 
     /**

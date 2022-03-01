@@ -32,25 +32,39 @@ class toolController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request::all();
 
-        $validator= Validator::make($data,[
-            'tool_id' =>'required|max:255',
-            'tool_name' =>'required|max:255',
-            'description'=>'required|max:255',
-            'project_id'=>'required',
-            'url' => 'required|max:255',
-            'stastus'=>'required'
 
+        $tool=tool::create([
+
+            'tool_id'=>$request->input('tool_id'),
+            'tool_name'=>$request->input('tool_name'),
+            'description'=>$request->input('description'),
+            'project_id'=>$request->input('project_id'),
+            'url'=>$request->input('url'),
+            'status'=>$request->input('status'),
         ]);
+        return response(['tool' => new projectResource($tool), 'message'=> 'Retrived successfully'], 200);
 
-        if($validator->fails()){
-            return response(['error' => $validator->errors(), 'Validation Error']);
-        }
 
-        $tool = tool::create($data);
+        // $data = $request::all();
 
-        return response([ 'tool' => new toolResource($tool), 'message' => 'Created successfully'], 200);
+        // $validator= Validator::make($data,[
+        //     'tool_id' =>'required|max:255',
+        //     'tool_name' =>'required|max:255',
+        //     'description'=>'required|max:255',
+        //     'project_id'=>'required',
+        //     'url' => 'required|max:255',
+        //     'stastus'=>'required'
+
+        // ]);
+
+        // if($validator->fails()){
+        //     return response(['error' => $validator->errors(), 'Validation Error']);
+        // }
+
+        // $tool = tool::create($data);
+
+        // return response([ 'tool' => new toolResource($tool), 'message' => 'Created successfully'], 200);
     }
 
     /**
