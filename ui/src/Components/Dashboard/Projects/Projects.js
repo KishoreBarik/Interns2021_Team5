@@ -32,7 +32,12 @@ function Projects() {
         <Loading />
       ) : (
         <div className="d-flex">
-          <div className="col">
+          <div
+            className="col overflow-auto"
+            style={{
+              height: "100vh",
+            }}
+          >
             <div className="container-fluid p-4">
               <div className="d-flex flex-wrap align-items-stretch">
                 {projectCtx.projects &&
@@ -76,7 +81,12 @@ function Projects() {
             <div className="vr"></div>
           )}
           {Object.keys(selectedProject).length !== 0 && (
-            <div className="col">
+            <div
+              className="col overflow-auto"
+              style={{
+                height: Object.keys(selectedProject).length !== 0 && "90vh",
+              }}
+            >
               <ProjectDetail
                 selectedProject={selectedProject}
                 closeProject={() => closeProject()}

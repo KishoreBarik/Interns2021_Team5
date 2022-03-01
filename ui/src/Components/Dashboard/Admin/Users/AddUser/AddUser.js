@@ -63,7 +63,7 @@ function AddUser(props) {
           body: JSON.stringify(formValues),
         });
       }
-      navigate("/dashboard");
+      navigate("/dashboard/users");
       SuccessToast(
         currentPath === "addUser"
           ? "User Added Successfully"
@@ -112,7 +112,7 @@ function AddUser(props) {
       {Object.values(formValues).includes("") && currentPath !== "addUser" ? (
         <Loading />
       ) : (
-        <div className="container-fluid">
+        <div className="container-fluid ">
           <div className="row content d-flex justify-content-center align-items-center">
             <div className="col-md-8  my-4">
               <div>
@@ -123,7 +123,7 @@ function AddUser(props) {
                   <RiCloseLine
                     size="30px"
                     cursor="pointer"
-                    onClick={() => navigate("/dashboard")}
+                    onClick={() => navigate("/dashboard/users")}
                   />
                 </div>
                 <form>

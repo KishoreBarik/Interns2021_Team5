@@ -114,7 +114,7 @@ function AddProject(props) {
           body: JSON.stringify(formValues),
         });
       }
-      navigate("/dashboard");
+      navigate("/dashboard/projects");
       SuccessToast(
         currentPath === "addProject"
           ? "Project Added Successfully"
@@ -235,7 +235,7 @@ function AddProject(props) {
                   <RiCloseLine
                     size="30px"
                     cursor="pointer"
-                    onClick={() => navigate("/dashboard")}
+                    onClick={() => navigate("/dashboard/projects")}
                   />
                 </div>
                 <form>

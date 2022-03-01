@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -13,18 +13,41 @@ import AdminProfile from "./Components/Dashboard/Admin/AdminProfile.js";
 import AddUser from "./Components/Dashboard/Admin/Users/AddUser/AddUser";
 
 const App = () => {
-  const ctx = useContext(AuthContext);
+  const authCtx = useContext(AuthContext);
+  const [loggedAccount, setloggedAccount] = useState({});
 
+  useEffect(() => {
+    setloggedAccount(authCtx.loggedAccount);
+    // console.log(loggedAccount);
+  }, [authCtx.loggedAccount, loggedAccount]);
   return (
     <Routes>
       <Route
         path="/"
-        element={ctx.isLoggedIn ? <Navigate to="/dashboard" /> : <Login />}
+        element={
+          authCtx.loggedAccount.email ? (
+            authCtx.loggedAccount.email === authCtx.adminEmail ? (
+              <Navigate to="/dashboard/users" />
+            ) : (
+              <Navigate to="/dashboard" />
+            )
+          ) : (
+            <Login />
+          )
+        }
       />
       <Route path="/login" element={<Login />} />
       <Route
         path="/dashboard"
-        element={!ctx.isLoggedIn ? <Navigate to="/" /> : <Dashboard />}
+        element={!authCtx.isLoggedIn ? <Navigate to="/" /> : <Dashboard />}
+      />
+      <Route
+        path="/dashboard/users"
+        element={!authCtx.isLoggedIn ? <Navigate to="/" /> : <Dashboard />}
+      />
+      <Route
+        path="/dashboard/projects"
+        element={!authCtx.isLoggedIn ? <Navigate to="/" /> : <Dashboard />}
       />
       <Route path="/changepassword" element={<ChangePassword />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
@@ -33,6 +56,8 @@ const App = () => {
       <Route path="/dashboard/admin/:id" element={<AdminProfile />} />
       <Route path="/dashboard/users/addUser" element={<AddUser />} />
       <Route path="/dashboard/users/:id" element={<AddUser />} />
+      {/* <Route path="/dashboard/users" element={<Dashboard />} /> */}
+      {/* <Route path="/dashboard/projects" element={<Dashboard />} /> */}
     </Routes>
   );
 };

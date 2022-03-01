@@ -8,9 +8,9 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link to={"/dashboard"} className="navbar-brand">
-          Tools pot
-        </Link>
+        <div className="navbar-brand">{`Welcome ${
+          authCtx.loggedAccount.name || ""
+        }`}</div>
         <div>
           <ul className="nav navbar-nav ms-auto">
             <li className="nav-item dropdown">
@@ -24,9 +24,9 @@ function Navbar() {
                 data-bs-toggle="dropdown"
               ></img>
               <div className="dropdown-menu dropdown-menu-end">
-                {authCtx.loggedUser.email === "toolpot@gmail.com" ? (
+                {authCtx.loggedAccount.email === "toolpot@gmail.com" ? (
                   <Link
-                    to={`/dashboard/admin/${authCtx.loggedUser.id}`}
+                    to={`/dashboard/admin/${authCtx.loggedAccount.id}`}
                     className="dropdown-item"
                   >
                     Profile
@@ -37,7 +37,11 @@ function Navbar() {
                   </Link>
                 )}
                 <div className="dropdown-divider"></div>
-                <div onClick={authCtx.onLogout} className="dropdown-item">
+                <div
+                  onClick={authCtx.onLogout}
+                  className="dropdown-item"
+                  style={{ cursor: "pointer" }}
+                >
                   Logout
                 </div>
               </div>
