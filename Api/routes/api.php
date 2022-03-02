@@ -7,7 +7,8 @@ use App\Http\Controllers\API\projectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\API\projectaccessController;
-use App\Http\Controllers\API\toolController;
+use App\Http\Controllers\toolController;
+use App\Http\Controllers\ForgotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,15 @@ use App\Http\Controllers\API\toolController;
 |
 */
 
-//Route::post('/register', 'API/AuthController@register');
-//Route::post('/login', 'API/AuthController@login');
-//Route::get('/user', 'API/AuthController@user')->middleware('auth:api');
-//Route::post('/forgot','API/AuthController@forgot');
-Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
+Route::put('users/{id}/changepassword' , 'UserController@changePassword')->middleware('auth:api');
+Route::put('users/{id}/forgetpassword' , 'UserController@forgetPassword')->name('api.users.forgetPassword')->middleware('auth:api');
+Route::get('logout', 'AuthController@logout')->middleware('auth:api');
+
+
+
+
+
 
 Route::middleware('auth:api')->group(function(){
     Route::middleware(['scope:admin, user'])->get('users', function(Request $request){
@@ -96,6 +100,21 @@ Route::apiResource('/project', 'API\projectController')->middleware('auth:api');
 Route::apiResource('/projectaccess', 'API\projectaccessController')->middleware('auth:api');
 
 
-Route::apiResource('/tool', 'API\toolController')->middleware('auth:api');
+//Route::apiResource('/tool', 'API\toolController')->middleware('auth:api');
+
+
+Route::prefix('user')->group(function () {
+
+   
+
+    // passport auth api
+    Route::middleware(['auth:api'])->group(function () {
+       
+
+        // todos resource route
+        Route::resource('tools', toolController::class);
+    });
+
+});
 
 
