@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import AuthContext from "../../Context/AuthContext";
@@ -8,12 +8,10 @@ function Login() {
   const initialValues = { email: "", password: "" };
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
   const [isShow, setIsShow] = useState(false);
 
   const authCtx = useContext(AuthContext);
-
-  const navigate = useNavigate();
+  console.log(authCtx.loggedOutData);
 
   const handleChanges = (e) => {
     const { name, value } = e.target;
@@ -23,15 +21,8 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setformErrors(handleValidation(formValues));
-    setIsSubmit(true);
     authCtx.onLogin(formValues.email, formValues.password);
   };
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // navigate("/changepassword");
-    }
-  }, [formErrors]);
 
   const handleValidation = (values) => {
     const errors = {};
@@ -45,6 +36,8 @@ function Login() {
       errors.password = "Password is required";
     } else if (values.password.length < 4) {
       errors.password = "Password must be more than 4 characters";
+    } else if (values.password !== "password") {
+      errors.password = "Invalid password";
     }
     return errors;
   };
@@ -60,7 +53,6 @@ function Login() {
             <h3 className="nm-4 text-center fs-1 m-4">Login</h3>
             <form className="mb-3" onSubmit={handleSubmit}>
               <div className="form-group mb-3">
-                {/* <label htmlFor="email">Email</label> */}
                 <input
                   type="email"
                   name="email"
@@ -73,7 +65,6 @@ function Login() {
               </div>
               <p className="text-danger">{formErrors.email}</p>
               <div className="form-group mb-3">
-                {/* <label htmlFor="password">Password</label> */}
                 <div className="input-group">
                   <input
                     type={isShow ? "text" : "password"}

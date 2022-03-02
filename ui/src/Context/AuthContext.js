@@ -12,6 +12,8 @@ export const AuthContextProvider = (props) => {
   const [loggedEmail, setloggedEmail] = useState("");
   const [loggedPass, setloggedPass] = useState("");
   const [loggedAccount, setLoggedAccount] = useState({});
+  const [loggedInData, setLoggedInData] = useState({});
+  const [loggedOutData, setLoggedOutData] = useState({});
   const [adminEmail, setadminEmail] = useState(
     "langworth.leopoldo@example.org"
   );
@@ -47,8 +49,24 @@ export const AuthContextProvider = (props) => {
     });
 
     const loggeduser = await response.json();
+    setLoggedInData(loggeduser);
     setLoggedAccount(loggeduser.user);
     localStorage.setItem("loggedAccount", JSON.stringify(loggeduser.user));
+    localStorage.setItem("loggedInData", JSON.stringify(loggeduser));
+  };
+
+  const logout = async () => {
+    const response = await fetch("http://127.0.0.1:8000/api/logout", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${loggedInData.token}`,
+      },
+    });
+
+    const logoutRes = await response.json();
+    setLoggedOutData(logoutRes);
+    setLoggedAccount(logoutRes);
+    // localStorage.setItem("loggedOutData", JSON.stringify(logoutRes));
   };
 
   useEffect(() => {
@@ -56,6 +74,9 @@ export const AuthContextProvider = (props) => {
     const storedEmail = localStorage.getItem("email");
     const storedPass = localStorage.getItem("pass");
     const storedAccount = localStorage.getItem("loggedAccount");
+    const storedloggedInData = localStorage.getItem("loggedInData");
+    // const storedloggedOutData = localStorage.getItem("loggedOutData");
+    // console.log(storedloggedInData);
 
     if (storedIsLoggedIn === "true") {
       setisLoggedIn(true);
@@ -64,6 +85,8 @@ export const AuthContextProvider = (props) => {
       setadminEmail("langworth.leopoldo@example.org");
       setloggedPass(storedPass);
       setLoggedAccount(JSON.parse(storedAccount));
+      setLoggedInData(JSON.parse(storedloggedInData));
+      // setLoggedOutData(JSON.parse(storedloggedOutData));
     }
   }, []);
 
@@ -84,6 +107,9 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("email");
     localStorage.removeItem("pass");
     localStorage.removeItem("loggedAccount");
+    localStorage.removeItem("loggedInData");
+    localStorage.removeItem("loggedOutData");
+    logout();
     setisLoggedIn(false);
     setLoggedAccount({});
   };
@@ -98,6 +124,8 @@ export const AuthContextProvider = (props) => {
         loggedUser: loggedUser,
         loggedAccount: loggedAccount,
         adminEmail: adminEmail,
+        loggedInData: loggedInData,
+        loggedOutData: loggedOutData,
       }}
     >
       {props.children}
