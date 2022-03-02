@@ -57,4 +57,27 @@ class AuthController extends Controller
         ]);
     }
 }
+
+public function user()
+{
+    # code...
+    return Auth()->user();
+}
+
+
+/**
+    * Logout Auth User
+    *
+    * @param Request $request
+    * @return void
+    */
+    public function logout() {
+
+        if(Auth()->check()) {
+            Auth()->user()->token()->revoke();
+            return response()->json(["status" => "success", "error" => false, "message" => "Success! You are logged out."], 200);
+        }
+        return response()->json(["status" => "failed", "error" => true, "message" => "Failed! You are already logged out."], 403);
+    }
+
 }
