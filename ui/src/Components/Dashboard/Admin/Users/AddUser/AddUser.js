@@ -40,7 +40,6 @@ function AddUser(props) {
     if (!Object.values(formValues).includes("")) {
       formValues.id = formValues.id === undefined ? Date.now() : formValues.id;
       setformValues({ ...formValues });
-      // console.log(formValues);
       setformValues(initialValues);
       console.log("user formvalues ", formValues);
       console.log(
@@ -53,8 +52,13 @@ function AddUser(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formValues),
-        });
-      } else {
+        }).then((result)=>{
+          result.json().then((response)=>{
+            console.warn(response);
+            fetchUser();
+          })
+        })
+      }else {
         fetch(`http://localhost:5000/users/${currentPath}`, {
           method: "PUT",
           headers: {

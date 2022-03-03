@@ -15,8 +15,14 @@ export const ProjectsContextProvider = (props) => {
   };
 
   const deleteProject = (id) => {
-    fetch(`http://localhost:5000/projects/${id}`, { method: "DELETE" });
-    fetchProjects();
+    fetch(`http://localhost:5000/projects/${id}`, { method: "DELETE" })
+    .then((result)=>{
+      result.json().then((response)=>{
+        console.warn(response);
+        fetchProjects();
+      })
+    });
+   
   };
 
   useEffect(() => {

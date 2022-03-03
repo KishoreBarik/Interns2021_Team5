@@ -57,146 +57,10 @@
       ]
     },
     {
-      "id": 2,
-      "title": "Temporary Disposable Email Server",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-      "image": "https://tempmail.altmails.com/image/tempmail-logo.png",
-      "tools": [
-        {
-          "id": 1,
-          "title": "Bootstrap",
-          "url": "https://getbootstrap.com/",
-          "description": "description1"
-        },
-        {
-          "id": 2,
-          "title": "Google",
-          "url": "https://www.google.com/",
-          "description": "description2"
-        },
-        {
-          "id": 3,
-          "title": "Youtube",
-          "url": "https://www.youtube.com/",
-          "description": "description3"
-        },
-        {
-          "id": 4,
-          "title": "Stack overflow",
-          "url": "https://stackoverflow.com/",
-          "description": "description4"
-        },
-        {
-          "id": 5,
-          "title": "Bootstrap",
-          "url": "https://getbootstrap.com/",
-          "description": "description5"
-        },
-        {
-          "id": 6,
-          "title": "Google",
-          "url": "https://www.google.com/",
-          "description": "description6"
-        },
-        {
-          "id": 7,
-          "title": "Youtube",
-          "url": "https://www.youtube.com/",
-          "description": "description7"
-        },
-        {
-          "id": 8,
-          "title": "Stack overflow",
-          "url": "https://stackoverflow.com/",
-          "description": "description8"
-        }
-      ],
-      "users": [
-        {
-          "id": 8,
-          "firstname": "Kiran ",
-          "lastname": "Siva",
-          "username": "Kiransiva",
-          "password": "kiran",
-          "gender": "Male",
-          "date": "1999-12-28",
-          "email": "kiransiva@gmail.com",
-          "image": "https://i.stack.imgur.com/34AD2.jpg"
-        },
-        {
-          "id": 9,
-          "firstname": "Aravindh",
-          "lastname": "Ippili",
-          "username": "Aravindhippili",
-          "password": "aravindh",
-          "gender": "Male",
-          "date": "1999-12-28",
-          "email": "aravindhippili@gmail.com",
-          "image": "https://i.stack.imgur.com/34AD2.jpg"
-        }
-      ]
-    },
-    {
       "id": 3,
       "title": "Analytics System like Google analytics",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/GAnalytics.svg/1200px-GAnalytics.svg.png",
-      "tools": [
-        {
-          "id": 1,
-          "title": "Bootstrap",
-          "url": "https://getbootstrap.com/",
-          "description": "description1"
-        },
-        {
-          "id": 2,
-          "title": "Google",
-          "url": "https://www.google.com/",
-          "description": "description2"
-        },
-        {
-          "id": 3,
-          "title": "Youtube",
-          "url": "https://www.youtube.com/",
-          "description": "description3"
-        },
-        {
-          "id": 4,
-          "title": "Stack overflow",
-          "url": "https://stackoverflow.com/",
-          "description": "description4"
-        },
-        {
-          "id": 5,
-          "title": "Bootstrap",
-          "url": "https://getbootstrap.com/",
-          "description": "description5"
-        },
-        {
-          "id": 6,
-          "title": "Google",
-          "url": "https://www.google.com/",
-          "description": "description6"
-        },
-        {
-          "id": 7,
-          "title": "Youtube",
-          "url": "https://www.youtube.com/",
-          "description": "description7"
-        },
-        {
-          "id": 8,
-          "title": "Stack overflow",
-          "url": "https://stackoverflow.com/",
-          "description": "description8"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Mobile Number Validation Application",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-      "image": "https://images-na.ssl-images-amazon.com/images/I/519sUIIH9lL.png",
       "tools": [
         {
           "id": 1,
@@ -543,37 +407,6 @@
       "users": [],
       "tools": [],
       "id": 1645814892555
-    },
-    {
-      "title": "dummy6",
-      "description": "asjdhfjkshdfj",
-      "image": "asjkdfhsjkdhfjksdfhsdf",
-      "users": [
-        {
-          "id": 4,
-          "firstname": "Yamini",
-          "lastname": "Javapu",
-          "username": "YaminiJavapu",
-          "password": "yamini",
-          "gender": "Female",
-          "date": "1999-11-28",
-          "email": "yaminijavapu@gmail.com",
-          "image": "https://i.stack.imgur.com/34AD2.jpg"
-        },
-        {
-          "id": 9,
-          "firstname": "Aravindh",
-          "lastname": "Ippili",
-          "username": "Aravindhippili",
-          "password": "aravindh",
-          "gender": "Male",
-          "date": "1999-12-28",
-          "email": "aravindhippili@gmail.com",
-          "image": "https://i.stack.imgur.com/34AD2.jpg"
-        }
-      ],
-      "tools": [],
-      "id": 1645814936058
     }
   ],
   "tools": [
@@ -680,26 +513,6 @@
       "image": "https://i.stack.imgur.com/34AD2.jpg"
     },
     {
-      "firstname": "asjfdhjksdhjkf",
-      "lastname": "ajksdhfdj",
-      "username": "dummy6",
-      "email": "asdfjkhd@gmail.com",
-      "password": "asjdfhdj",
-      "date": "2022-02-23",
-      "gender": "Female",
-      "id": 1645814855155
-    },
-    {
-      "firstname": "asjdfhksjdhfjksdf",
-      "lastname": "asjkdfhskjdhfjkds",
-      "username": "dummy8",
-      "email": "asjdhfjkshdfjksdh@gmail.com",
-      "password": "sfsafsdf",
-      "date": "2022-02-15",
-      "gender": "Male",
-      "id": 1645815508035
-    },
-    {
       "firstname": "sdfshajhfjkad",
       "lastname": "ajshdfjkshdf",
       "username": "dummy9",
@@ -710,14 +523,34 @@
       "id": 1645815544125
     },
     {
+      "firstname": "pavani",
+      "lastname": "javapu",
+      "username": "pavanijavapu",
+      "email": "pavanijavapu151@gmail.com",
+      "password": "pppppp",
+      "date": "2022-03-04",
+      "gender": "Female",
+      "id": 1646202076716
+    },
+    {
+      "firstname": "Swathi",
+      "lastname": "golakoti",
+      "username": "swathiGolakati",
+      "email": "swathi@gmail.com",
+      "password": "swathi",
+      "date": "2022-03-04",
+      "gender": "Female",
+      "id": 1646202341933
+    },
+    {
       "firstname": "kasturi",
       "lastname": "Muppana",
-      "username": "kasturi",
+      "username": "Kasturi",
       "email": "muppanakasturi@gmail.com",
-      "password": ".....",
-      "date": "2022-02-03",
+      "password": "kasturi",
+      "date": "2022-03-16",
       "gender": "Female",
-      "id": 1645867422947
+      "id": 1646235761958
     }
   ]
 }

@@ -13,11 +13,17 @@ export const UsersContextProvider = (props) => {
     setUsers(users);
   };
 
-  const deleteUser = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, { method: "DELETE" });
-    fetchUsers();
-  };
+  const deleteUser = async(id) => {
+   fetch(`http://localhost:5000/users/${id}`, { method: "DELETE" ,
+   
+  }).then((result)=>{
+    result.json().then((response)=>{
+      console.warn(response);
+      fetchUsers();
+    })
+  });
 
+};
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
     if (storedIsLoggedIn === "true") {
